@@ -3,6 +3,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CommentController;
+use App\Models\post;
 
 
 use App\Http\Controllers\DashboardController;  
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('post/{post}', function(post $post){
+    return view('posts.show',compact('post'));
+})->name('posts.show');
 
 Route::resource('posts', PostController::class)->middleware('auth');
 
